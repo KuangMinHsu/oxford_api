@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  local-mysql:
+    container_name: local-mysql
+    volumes:
+      - '/var/lib/mysql:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=9527
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=5566
+      - MYSQL_DATABASE=vocabulary
+    image: mysql:5
+    ports:
+      - "3306:3306"
+  python-server:
+    build:
+      context: ./
+      dockerfile: build/Dockerfile
+    volumes:
+      - './:/usr/src/app/'
